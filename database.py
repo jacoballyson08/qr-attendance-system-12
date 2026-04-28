@@ -1,7 +1,9 @@
+from dotenv import load_dotenv
 import os
 import psycopg2
 import mysql.connector
 
+load_dotenv()
 
 # -----------------------------
 # SWITCH MODE HERE
@@ -34,13 +36,13 @@ def get_db():
     if USE_CLOUD:
         # 🌐 CLOUD DATABASE (Supabase PostgreSQL)
 
-        conn = psycopg2.connect(DATABASE_URL)
+        connection = psycopg2.connect(DATABASE_URL)
 
-        return conn
+        return connection
 
     else:
         # 🏠 LOCAL DATABASE (XAMPP MySQL)
 
-        conn = mysql.connector.connect(**LOCAL_DB_CONFIG)
+        connection = mysql.connector.connect(**LOCAL_DB_CONFIG)
 
-        return conn
+        return connection
